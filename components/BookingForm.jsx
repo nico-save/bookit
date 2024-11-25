@@ -15,6 +15,8 @@ const BookingForm = ({ room }) => {
   const [checkOutDate, setCheckOutDate] = useState("");
   const [checkOutTime, setCheckOutTime] = useState("");
 
+  const [unavailableTimes, setUnavailableTimes] = useState([]);
+
   const [isRoomAvailable, setIsRoomAvailable] = useState(null); // null: not checked yet, true: available, false: unavailable
   const [availabilityMessage, setAvailabilityMessage] = useState("");
 
@@ -67,6 +69,25 @@ const BookingForm = ({ room }) => {
     room.$id,
     checkRoomAvailability,
   ]);
+
+  // useEffect(() => {
+  //   // Fetch unavailable times when the date changes
+  //   const fetchUnavailableTimes = async () => {
+  //     if (checkOutDate) {
+  //       try {
+  //         const times = await getUnavailableTimes({
+  //           roomId: room.$id,
+  //           checkOutDate,
+  //         });
+  //         setUnavailableTimes(times); // Array of unavailable times, e.g., ["10:00", "11:00"]
+  //       } catch (error) {
+  //         console.error("Error fetching unavailable times:", error);
+  //       }
+  //     }
+  //   };
+
+  //   fetchUnavailableTimes();
+  // }, [checkOutDate, room.$id, getUnavailableTimes]);
 
   return (
     <div className="mt-6">
